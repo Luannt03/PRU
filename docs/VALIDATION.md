@@ -14,7 +14,7 @@ Kiểm tra thực hiện trong cloud bằng .NET SDK 8.0.425, tải từ nguồn
 | Asset gốc của nhà phát hành so với ZIP upload | Giữ nguyên |
 | Import/compile thật bằng Unity 6000.6.0f1 | Chưa chạy: cloud không có Editor/license |
 | NUnit EditMode trong Unity | Đã cung cấp 30 tình huống; chưa chạy bằng Unity |
-| Unity PlayMode integration tests | Đã cung cấp 2 bài test bootstrap/collider và Pause/heating; chưa chạy bằng Unity |
+| Unity PlayMode integration tests | Đã cung cấp 5 bài test: bootstrap/collider, Pause/heating, hoạt ảnh quỳ/Pause/reset, vị trí ống trên đèn cồn, thông tin nguyên tố/note xu hướng; chưa chạy bằng Unity |
 | Play Mode, hình ảnh, click/drag/UI, Pause và lưu PlayerPrefs | Chưa chạy; có checklist để kiểm tra |
 | Build/EXE Windows ngoài Editor | Chưa chạy; đã thêm lệnh build và cấu hình scene |
 

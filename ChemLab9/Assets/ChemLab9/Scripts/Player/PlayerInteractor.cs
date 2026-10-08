@@ -24,6 +24,21 @@ namespace ChemLab9
             if (highlighted != null) highlighted.Highlight(true);
         }
         bool OnUI => EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        public Interactable FindTool(Ray ray)
+        {
+            GameManager game = GameManager.Instance;
+            if (game == null || game.ActiveStation == null) return null;
+            RaycastHit[] hits = Physics.RaycastAll(ray, 8f);
+            System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+            foreach (RaycastHit hit in hits)
+            {
+                // Receiving volumes surround snapped tools; they must not hide a tool from selection.
+                if (hit.collider.GetComponentInParent<DropZone>() != null) continue;
+                Interactable item = hit.collider.GetComponentInParent<Interactable>();
+                return item != null && item.Station == game.ActiveStation ? item : null;
+            }
+            return null;
+        }
         void Update()
         {
             GameManager game = GameManager.Instance;
@@ -57,10 +72,10 @@ namespace ChemLab9
                 return;
             }
             if (OnUI) return;
-            if (Physics.Raycast(ray, out RaycastHit toolHit, 8f))
+            Interactable selected = FindTool(ray);
+            if (selected != null)
             {
-                Interactable item = toolHit.collider.GetComponentInParent<Interactable>();
-                if (item == null || item.Station != game.ActiveStation) return;
+                Interactable item = selected;
                 game.UI.SetPrompt(item.Label);
                 if (!Input.GetMouseButtonDown(0)) return;
                 DraggableObject tool = item as DraggableObject;

@@ -95,7 +95,7 @@ Pause dừng thời gian gameplay, coroutine rót, VFX/animation và âm thanh. 
 
 - **ChemLab9 → Validate Project**: kiểm tra dữ liệu, electron, quiz, scene build và pipeline trong Editor.
 - **Window → General → Test Runner → EditMode → Run All**: chạy 30 tình huống logic cùng bộ production code. Đợi Unity compile trước khi mở Test Runner.
-- Test Runner → **PlayMode → Run All**: hai kiểm tra tích hợp scene/tool và Pause/heating; chúng chưa được chạy trong cloud.
+- Test Runner → **PlayMode → Run All**: năm kiểm tra tích hợp scene/tool, Pause/heating, hoạt ảnh quỳ/reset, vị trí nung và ô thông tin/nhãn xu hướng; chúng chưa được chạy trong cloud.
 - Thực hiện checklist Play Mode, sau đó **ChemLab9 → Build Windows x64**. Hoặc File → Build Profiles → Windows, bảo đảm MainMenu đứng trước ChemistryLab.
 - Nếu thiếu target, Unity Hub → Installs → Manage → Add modules → Windows Build Support phù hợp với backend đang dùng.
 - Output: `ChemLab9/Builds/Windows/ChemLab9.exe`. Copy **toàn bộ thư mục Windows**, gồm `_Data` và DLL, sang máy demo. Test file EXE ngoài Editor.

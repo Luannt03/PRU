@@ -27,7 +27,11 @@ Nếu không nhận E: click vào Game view; kiểm tra project input là Input 
 - [ ] Click nguồn khi ống chưa nối: thông báo cần nối ống; không tăng liều.
 - [ ] Kéo tip vào cốc nước, bật nguồn: có bọt trong cốc, liều tăng và dừng tối đa 100%.
 - [ ] Quỳ sau đủ CO2 và dừng khí: giấy đỏ; **nước không đỏ**.
+- [ ] Quỳ có hoạt ảnh nâng lên miệng cốc, nhúng xuống nước, đổi màu khi nhúng rồi nhấc ra giữa phía trước bàn. Không đổi màu ngay lúc thả.
+- [ ] Pause giữa hoạt ảnh quỳ: vị trí giữ nguyên; Resume tiếp tục. Thử lại giữa hoạt ảnh không có callback cũ làm đỏ mẫu mới; kích thước quỳ về ban đầu.
+- [ ] Nhãn dụng cụ Bài 1/2/8 nhỏ hơn, tên ngắn; hướng dẫn thao tác đầy đủ vẫn có ở gợi ý dưới màn hình và panel.
 - [ ] Chuyển tip sang nước vôi, bật khí: đục tăng dần, kết tủa trắng; không dẫn vượt một liều.
+- [ ] Đầu ống đã nằm trong cốc vẫn chọn/kéo được sau khi tắt khí; vùng nhận không chặn việc chọn dụng cụ.
 - [ ] Trả lời sai: có phản hồi; chọn đúng cả hai câu: +100 lần đầu.
 - [ ] Thử lại: nước trong, quỳ tím, lượng khí = 0, dụng cụ về home, VFX dừng; luyện lại không cộng điểm nữa.
 
@@ -46,6 +50,7 @@ Trường hợp thiếu nước/sai oxide được kiểm tra bằng EditMode su
 
 - [ ] Bật nhiệt trước đặt ống: bị chặn.
 - [ ] Đặt đúng kẹp rồi bật: timer tăng, chỉ **chất rắn** xanh dần đen, không đổi thủy tinh thành đen.
+- [ ] Sau khi thả đúng kẹp, đáy ống nằm ngay trên vùng lửa của đèn cồn ở giữa bàn, ống nghiêng theo kẹp; không đứng xa bên cạnh đèn.
 - [ ] Tắt khoảng 40%: thời gian giữ nguyên; bật lại tiếp tục.
 - [ ] Đủ thời gian: CuO đen; phải tắt thiết bị trước khi mở câu hỏi.
 - [ ] Tắt thiết bị không làm CuO xanh trở lại. Thử lại tạo mẫu Cu(OH)2 mới, timer = 0.
@@ -56,6 +61,8 @@ Trường hợp thiếu nước/sai oxide được kiểm tra bằng EditMode su
 - [ ] Bảng có đúng vị trí nhóm/chu kỳ cho H…Ca; chưa có dữ liệu các ô khác.
 - [ ] Bắt đầu, click nguyên tố khác: được xem thông tin, không tự tính là tìm Na.
 - [ ] Na: Z=11, p=e=11, lớp 2/8/1; Cl: Z=17, lớp 2/8/7; Ca: Z=20, lớp 2/8/8/2, chu kỳ 4.
+- [ ] Ô thông tin riêng phía trên panel luôn hiện Z, số proton/electron và phân bố electron khi chọn ô; cuộn phần nhiệm vụ bên dưới không làm thông tin này biến mất. Thử lại xóa thông tin lựa chọn cũ.
+- [ ] Mô hình nguyên tử không đè lên chú giải/phạm vi dưới bảng; chữ trên ô nguyên tố giữ kích thước cũ.
 - [ ] Mô hình có đúng số electron mỗi lớp; click nhanh giữa các ô không giữ lại mô hình cũ.
 - [ ] Có nhãn đây là mô hình minh họa, không có dữ liệu neutron giả.
 - [ ] Click panel không chọn ô phía sau; Esc trả lại điều khiển.
@@ -63,6 +70,7 @@ Trường hợp thiếu nước/sai oxide được kiểm tra bằng EditMode su
 ## Bài 31 — xu hướng
 
 - [ ] Chế độ A: kích thước Li < Na < K, Na > Mg > Al; co/giãn khi đổi chế độ.
+- [ ] Sphere lớn hơn bản cũ; mỗi tên/note ở ô nền riêng phía dưới sphere. Chữ và sphere nằm trong thẻ, không đè nhau. Mọi nhãn xu hướng/giải thích ở trong ô nền màu, kiểm tra cả A và B.
 - [ ] Chọn K, Na, Li: phản hồi sai, cho chọn lại; click lặp cùng nguyên tố không được tính là đủ ba.
 - [ ] Chọn Li, Na, K: nhiệm vụ đạt. Chuyển B quan sát mũi tên/thanh mức độ.
 - [ ] Nhãn luôn là minh họa, không có pm; giải thích khí hiếm riêng.

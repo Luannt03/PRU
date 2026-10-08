@@ -13,10 +13,19 @@ namespace ChemLab9.Lessons
             get
             {
                 string[] task = { "Click ô Na trên bảng 3D.", "Click nguyên tố có Z = 17.", "Click Ca và quan sát số lớp electron.", "Đã khám phá Na, Cl, Ca. Trả lời câu hỏi để hoàn thành." };
-                return task[TaskIndex] + "\n" + (Selected == null ? "Chưa chọn nguyên tố." : ElementInfo(Selected));
+                return task[TaskIndex] + "\nThông tin nguyên tố được hiển thị trong ô riêng phía trên.";
             }
         }
         public static string ElementInfo(ElementRecord e) => e.name + " (" + e.symbol + ") • Z = " + e.atomicNumber + "\nĐiện tích hạt nhân: +" + e.atomicNumber + "e • p = e = " + e.atomicNumber + " (trung hòa)\nNhóm " + e.group + " / " + e.oldGroup + " • Chu kỳ " + e.period + "\nElectron theo lớp: " + string.Join(", ", e.shells) + "\nNguyên tử khối trung bình ≈ " + e.atomicMass + " u\nMô hình lớp electron minh họa, không phải quỹ đạo thực. Không hiển thị neutron.";
+        public static string CompactElementInfo(ElementRecord e) =>
+            "Số hiệu nguyên tử Z = " + e.atomicNumber + "\n" +
+            "Proton = " + e.atomicNumber + " | Electron = " + e.atomicNumber + "\n" +
+            "Nguyên tử trung hòa | Hạt nhân +" + e.atomicNumber + "e\n" +
+            "Nhóm " + e.group + " / " + e.oldGroup + " | Chu kỳ " + e.period + "\n" +
+            "Electron theo lớp: " + string.Join(", ", e.shells) + "\n" +
+            "Số lớp electron: " + e.shells.Length + "\n" +
+            "Nguyên tử khối trung bình ~ " + e.atomicMass + " u\n" +
+            "Mô hình lớp e minh họa; không hiện neutron.";
         public void Select(ElementRecord element)
         {
             if (!Started || !element.Valid()) return;

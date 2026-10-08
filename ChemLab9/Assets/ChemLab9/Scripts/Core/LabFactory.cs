@@ -17,6 +17,11 @@ namespace ChemLab9.Core
         }
         public static void Remove(Object obj)
         { if (Application.isPlaying) Object.Destroy(obj); else Object.DestroyImmediate(obj); }
+        public static string ReadableText(string value)
+        {
+            return (value ?? "").Replace("⇌", "<=>").Replace("→", "->").Replace("↓", "(kết tủa)")
+                .Replace("✓", "[X]").Replace("≈", "~");
+        }
         public GameObject Empty(string name, Transform parent, Vector3 position)
         {
             GameObject go = new GameObject(name); go.transform.SetParent(parent, false); go.transform.localPosition = position; return go;
@@ -32,10 +37,27 @@ namespace ChemLab9.Core
         public TMP_Text Label(string name, Transform parent, Vector3 position, string text, float size = .11f, Color? color = null)
         {
             GameObject go = new GameObject(name, typeof(RectTransform)); go.transform.SetParent(parent, false); go.transform.localPosition = position; go.layer = 2;
-            TextMeshPro label = go.AddComponent<TextMeshPro>(); label.font = Font; label.text = text;
+            TextMeshPro label = go.AddComponent<TextMeshPro>(); label.font = Font; label.text = ReadableText(text);
             label.fontSize = size * 10f; label.color = color ?? Color.white;
             label.alignment = TextAlignmentOptions.Center; label.rectTransform.sizeDelta = new Vector2(4f, 1.4f);
             label.textWrappingMode = TextWrappingModes.Normal; return label;
+        }
+        public TMP_Text EquipmentLabel(string name, Transform parent, Vector3 position, string text, float size = .048f)
+        {
+            TMP_Text label = Label(name, parent, position, text, size);
+            label.rectTransform.sizeDelta = new Vector2(.78f, .20f);
+            label.enableAutoSizing = true; label.fontSizeMin = size * 7f; label.fontSizeMax = size * 10f;
+            label.overflowMode = TextOverflowModes.Ellipsis;
+            return label;
+        }
+        public TMP_Text PanelLabel(string name, Transform parent, Vector3 position, string text, Vector2 size, float fontSize, Color background)
+        {
+            Shape(name + "Background", parent, position, new Vector3(size.x, size.y, .025f), background);
+            TMP_Text label = Label(name, parent, position + Vector3.back * .02f, text, fontSize);
+            label.rectTransform.sizeDelta = size - new Vector2(.06f, .025f);
+            label.enableAutoSizing = true; label.fontSizeMin = fontSize * 7.5f; label.fontSizeMax = fontSize * 10f;
+            label.overflowMode = TextOverflowModes.Ellipsis;
+            return label;
         }
         public GameObject Model(string name, GameObject prefab, Transform parent, Vector3 position, Vector3 size, bool glass = false)
         {

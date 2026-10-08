@@ -9,13 +9,14 @@ namespace ChemLab9.Interaction
         public Vector3 HomePosition { get; private set; }
         Quaternion homeRotation;
         Vector3 dragStart;
+        Vector3 homeScale;
         Quaternion dragRotation;
         Collider[] colliders;
         Equipment.FlowEffect flow;
         public void Configure(Core.StationController station, ToolKind kind, string label)
         {
             Station = station; Kind = kind; Label = label;
-            HomePosition = transform.localPosition; homeRotation = transform.localRotation;
+            HomePosition = transform.localPosition; homeRotation = transform.localRotation; homeScale = transform.localScale;
             // Visual model colliders are removed at end of frame; keep the stable wrapper collider.
             colliders = GetComponents<Collider>();
             flow = gameObject.AddComponent<Equipment.FlowEffect>();
@@ -36,7 +37,39 @@ namespace ChemLab9.Interaction
             if (zone == null || !zone.Receive(this)) ReturnBeforeDrag();
         }
         public void ReturnBeforeDrag() { transform.localPosition = dragStart; transform.localRotation = dragRotation; }
-        public void Snap(DropZone zone) { transform.position = zone.SnapPoint.position; transform.rotation = zone.Station.transform.rotation; }
+        public void Snap(DropZone zone) { transform.SetPositionAndRotation(zone.SnapPoint.position, zone.SnapPoint.rotation); }
+        public void AnimateDipAndPresent(Transform destination, Vector3 presentationPosition, System.Action checkIndicator)
+        {
+            StartCoroutine(DipRoutine(destination, presentationPosition, checkIndicator));
+        }
+        IEnumerator MoveTo(Vector3 position, Quaternion rotation, float seconds, Vector3 scale)
+        {
+            Vector3 from = transform.position, fromScale = transform.localScale;
+            Quaternion fromRotation = transform.rotation;
+            float elapsed = 0;
+            while (elapsed < seconds)
+            {
+                elapsed += Time.deltaTime; float t = Mathf.SmoothStep(0, 1, Mathf.Clamp01(elapsed / seconds));
+                transform.SetPositionAndRotation(Vector3.Lerp(from, position, t), Quaternion.Slerp(fromRotation, rotation, t));
+                transform.localScale = Vector3.Lerp(fromScale, scale, t);
+                yield return null;
+            }
+        }
+        IEnumerator DipRoutine(Transform destination, Vector3 presentationPosition, System.Action checkIndicator)
+        {
+            Busy = true;
+            foreach (Collider c in colliders) if (c != null) c.enabled = false;
+            Quaternion upright = Station.transform.rotation;
+            Vector3 aboveCup = destination.position + Vector3.up * .28f;
+            yield return MoveTo(aboveCup, upright, .35f, homeScale);
+            yield return MoveTo(destination.position - Vector3.up * .08f, upright, .45f, homeScale);
+            yield return new WaitForSeconds(.4f);
+            checkIndicator?.Invoke();
+            yield return MoveTo(aboveCup, upright, .4f, homeScale);
+            yield return MoveTo(Station.transform.TransformPoint(presentationPosition), upright, .55f, homeScale * 1.5f);
+            foreach (Collider c in colliders) if (c != null) c.enabled = true;
+            Busy = false;
+        }
         public void AnimatePour(Transform destination, System.Action finish)
         {
             StartCoroutine(PourRoutine(destination, finish));
@@ -70,7 +103,7 @@ namespace ChemLab9.Interaction
             StopAllCoroutines(); Busy = false;
             if (flow != null) flow.SetFlow(false, transform.position);
             if (colliders != null) foreach (Collider c in colliders) if (c != null) c.enabled = true;
-            transform.localPosition = HomePosition; transform.localRotation = homeRotation;
+            transform.localPosition = HomePosition; transform.localRotation = homeRotation; transform.localScale = homeScale;
         }
     }
 }

@@ -9,8 +9,10 @@ namespace ChemLab9.Equipment
         public bool IsOn { get; private set; }
         public ParticleSystem Bubbles;
         public Core.StationController Station;
+        public System.Func<bool> CanOperate;
         public void Toggle()
         {
+            if (CanOperate != null && !CanOperate()) { Station.Lesson.Feedback = "Đợi hoạt ảnh kiểm tra quỳ kết thúc trước khi bật nguồn khí."; return; }
             if (Target == null) { Station.Lesson.Feedback = "Đặt đầu ống vào cốc trước khi bật nguồn CO2."; return; }
             if (!IsOn && Target.State.GasDose >= 1f) { Station.Lesson.Feedback = "Cốc đã nhận đủ một liều CO2; MVP không dẫn dư."; return; }
             IsOn = !IsOn;

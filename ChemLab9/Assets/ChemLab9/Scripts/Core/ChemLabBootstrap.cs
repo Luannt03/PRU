@@ -123,7 +123,7 @@ namespace ChemLab9.Core
             else if(id==30)
             {
                 root.gameObject.AddComponent<PeriodicTableBuilder>().Build(station,(Lesson30Manager)lesson,Database);
-                GameObject atom=Factory.Empty("AtomModel",root,new Vector3(0,1.7f,-.2f)); ((Lesson30Manager)lesson).Atom=atom.AddComponent<AtomVisualizer>();
+                GameObject atom=Factory.Empty("AtomModel",root,new Vector3(0,2.05f,-.2f)); ((Lesson30Manager)lesson).Atom=atom.AddComponent<AtomVisualizer>();
             }
             else
             {
@@ -146,20 +146,22 @@ namespace ChemLab9.Core
             zone.SnapPoint=Factory.Empty("SnapPoint",go.transform,new Vector3(0,.18f,0)).transform;
             zone.Configure(station,name,accepted,ring); return zone;
         }
-        DraggableObject Tool(string name,StationController station,Vector3 position,ToolKind kind,string label,GameObject root=null)
+        DraggableObject Tool(string name,StationController station,Vector3 position,ToolKind kind,string label,GameObject root=null,string caption=null)
         {
             if(root==null) root=Factory.Empty(name,station.transform,position);
-            var box=root.AddComponent<BoxCollider>(); box.size=new Vector3(.25f,.3f,.25f); box.center=Vector3.up*.1f;
+            var box=root.AddComponent<BoxCollider>();
+            box.size=kind==ToolKind.Litmus ? new Vector3(.14f,.24f,.08f) : new Vector3(.25f,.3f,.25f);
+            box.center=Vector3.up*(kind==ToolKind.Litmus ? .05f : .1f);
             var tool=root.AddComponent<DraggableObject>(); tool.Configure(station,kind,label);
-            Factory.Label("ToolLabel",station.transform,position+new Vector3(0,.42f,0),label,.07f).rectTransform.sizeDelta=new Vector2(.85f,.3f);
+            Factory.EquipmentLabel(name+"Label",station.transform,position+new Vector3(0,.24f,-.06f),caption ?? label);
             return tool;
         }
-        GameObject Button3D(string name,StationController station,Vector3 p,string label,System.Action action,GameObject prefab=null)
+        GameObject Button3D(string name,StationController station,Vector3 p,string label,System.Action action,GameObject prefab=null,string caption=null)
         {
             GameObject root=Factory.Model(name,prefab,station.transform,p,new Vector3(.35f,.32f,.35f));
             var col=root.AddComponent<BoxCollider>(); col.center=Vector3.up*.16f; col.size=new Vector3(.4f,.35f,.4f);
             var click=root.AddComponent<Interactable>(); click.Station=station; click.Label=label; click.Click=action;
-            Factory.Label("ControlLabel",station.transform,p+new Vector3(0,.48f,0),label,.07f).rectTransform.sizeDelta=new Vector2(1f,.3f); return root;
+            Factory.EquipmentLabel(name+"Label",station.transform,p+new Vector3(0,.47f,0),caption ?? label); return root;
         }
         ParticleSystem Particles(string name,Transform parent,Vector3 p,bool bubbles)
         {
@@ -178,43 +180,46 @@ namespace ChemLab9.Core
             lesson.Limewater=Container("Beaker_Limewater",station,new Vector3(.9f,1.1f,.08f),false,Substance.CaOH2);
             Zone("water",station,lesson.Water.transform,Vector3.zero,new[]{ToolKind.GasTube,ToolKind.Litmus});
             Zone("lime",station,lesson.Limewater.transform,Vector3.zero,new[]{ToolKind.GasTube});
-            Factory.Label("WaterLabel",station.transform,new Vector3(-.15f,1.55f,.08f),"Nước H2O",.08f);
-            Factory.Label("LimeLabel",station.transform,new Vector3(.9f,1.55f,.08f),"Nước vôi trong",.08f);
+            Factory.EquipmentLabel("WaterLabel",station.transform,new Vector3(-.15f,1.56f,.08f),"Nước H2O");
+            Factory.EquipmentLabel("LimeLabel",station.transform,new Vector3(.9f,1.56f,.08f),"Nước vôi trong");
             GasDeliveryController gas=station.gameObject.AddComponent<GasDeliveryController>(); gas.Station=station; gas.Bubbles=Particles("CO2Bubbles",station.transform,Vector3.zero,true); lesson.Gas=gas;
-            GameObject source=Button3D("GasSource",station,new Vector3(-1.2f,1.1f,.05f),"Click: CO2 bật/tắt",gas.Toggle);
-            DraggableObject tip=Tool("GasTube",station,new Vector3(-.85f,1.18f,-.45f),ToolKind.GasTube,"Kéo đầu ống vào cốc");
+            GameObject source=Button3D("GasSource",station,new Vector3(-1.2f,1.1f,.05f),"Click: CO2 bật/tắt",gas.Toggle,caption:"Nguồn CO2");
+            DraggableObject tip=Tool("GasTube",station,new Vector3(-.85f,1.18f,-.45f),ToolKind.GasTube,"Kéo đầu ống vào cốc",caption:"Đầu ống CO2");
             Factory.Shape("TubeTip",tip.transform,Vector3.up*.08f,new Vector3(.045f,.1f,.045f),new Color(.2f,.7f,.75f),PrimitiveType.Cylinder);
             station.gameObject.AddComponent<GasTubeVisual>().Configure(source.transform,tip.transform);
-            DraggableObject paper=Tool("LitmusPaper",station,new Vector3(.35f,1.18f,-.45f),ToolKind.Litmus,"Kéo quỳ vào cốc nước");
+            DraggableObject paper=Tool("LitmusPaper",station,new Vector3(.38f,1.18f,-.45f),ToolKind.Litmus,"Kéo quỳ vào cốc nước",caption:"Giấy quỳ tím");
             lesson.Litmus=Factory.Shape("Paper",paper.transform,Vector3.up*.05f,new Vector3(.06f,.16f,.012f),new Color(.6f,.2f,.8f)).GetComponent<Renderer>();
+            lesson.LitmusTool=paper; gas.CanOperate=() => !paper.Busy;
         }
         void BuildBasic(StationController station,Lesson02Manager lesson)
         {
             lesson.Beaker=Container("Beaker_Water",station,new Vector3(0,1.1f,.1f),false,Substance.H2O);
             Zone("water",station,lesson.Beaker.transform,Vector3.zero,new[]{ToolKind.CaOSpoon,ToolKind.IndicatorBottle});
-            DraggableObject spoon=Tool("CaOSpoon",station,new Vector3(-1,1.18f,-.25f),ToolKind.CaOSpoon,"Kéo thìa CaO vào cốc");
+            DraggableObject spoon=Tool("CaOSpoon",station,new Vector3(-1,1.18f,-.25f),ToolKind.CaOSpoon,"Kéo thìa CaO vào cốc",caption:"Thìa CaO");
             Factory.Shape("Handle",spoon.transform,new Vector3(0,.04f,-.1f),new Vector3(.035f,.025f,.3f),new Color(.6f,.7f,.75f));
             lesson.CaOSample=Factory.Shape("CaO_Dose",spoon.transform,Vector3.up*.06f,new Vector3(.1f,.035f,.12f),Color.white,PrimitiveType.Sphere);
             Factory.Model("CaO_Bottle",null,station.transform,new Vector3(-1.35f,1.1f,.2f),new Vector3(.22f,.25f,.22f));
             GameObject bottle=Factory.Model("ChemicalBottle",null,station.transform,new Vector3(1f,1.18f,-.2f),new Vector3(.19f,.25f,.19f),true);
-            Tool("Phenolphthalein",station,bottle.transform.localPosition,ToolKind.IndicatorBottle,"Kéo phenolphthalein vào cốc",bottle);
+            Tool("Phenolphthalein",station,bottle.transform.localPosition,ToolKind.IndicatorBottle,"Kéo phenolphthalein vào cốc",bottle,"Phenolphthalein");
             Factory.Shape("BottleCap",bottle.transform,new Vector3(0,.26f,0),new Vector3(.1f,.04f,.1f),new Color(.75f,.25f,.65f),PrimitiveType.Cylinder);
             lesson.Steam=Particles("WaterSteam_Illustration",station.transform,new Vector3(0,1.48f,.1f),false);
             Factory.Shape("VirtualThermometer",station.transform,new Vector3(.45f,1.32f,.3f),new Vector3(.075f,.44f,.05f),new Color(.7f,.8f,.85f));
             lesson.ThermometerFill=Factory.Shape("ThermometerFill",station.transform,new Vector3(.45f,1.14f,.265f),new Vector3(.04f,.08f,.03f),new Color(.9f,.3f,.15f)).transform;
-            lesson.ThermometerText=Factory.Label("Temperature",station.transform,new Vector3(.45f,1.65f,.26f),"25.0 °C (mô phỏng)",.08f);
+            lesson.ThermometerText=Factory.EquipmentLabel("Temperature",station.transform,new Vector3(.45f,1.65f,.26f),"25.0 °C (mô phỏng)",.055f);
         }
         void BuildHeating(StationController station,Lesson08Manager lesson)
         {
-            ChemicalContainer sample=Container("TestTube_CuOH2",station,new Vector3(-.8f,1.18f,-.2f),true,Substance.CuOH2); lesson.Sample=sample;
-            Tool("TestTube",station,sample.transform.localPosition,ToolKind.CopperSample,"Kéo ống vào kẹp nung",sample.gameObject);
+            ChemicalContainer sample=Container("TestTube_CuOH2",station,new Vector3(-.42f,1.18f,-.15f),true,Substance.CuOH2); lesson.Sample=sample;
+            Tool("TestTube",station,sample.transform.localPosition,ToolKind.CopperSample,"Kéo ống vào kẹp nung",sample.gameObject,"Ống Cu(OH)2");
             HeatingController heater=station.gameObject.AddComponent<HeatingController>(); heater.Sample=sample; heater.Station=station; lesson.Heater=heater;
-            Button3D("Heater",station,new Vector3(.5f,1.1f,.1f),"Click: nhiệt bật/tắt",heater.Toggle,HeaterModel);
-            DropZone zone=Zone("heating",station,station.transform,new Vector3(.5f,1.45f,.1f),new[]{ToolKind.CopperSample}); zone.SnapPoint.localPosition=new Vector3(0,.04f,0);
-            Factory.Shape("ClampSupport",station.transform,new Vector3(.75f,1.48f,.3f),new Vector3(.025f,.75f,.025f),new Color(.5f,.65f,.7f));
-            Factory.Shape("Clamp",station.transform,new Vector3(.62f,1.8f,.1f),new Vector3(.25f,.03f,.045f),new Color(.5f,.65f,.7f));
-            heater.HeatVisual=Factory.Shape("HeatZone",station.transform,new Vector3(.5f,1.45f,.1f),new Vector3(.08f,.16f,.08f),new Color(1f,.35f,.1f),PrimitiveType.Sphere); heater.HeatVisual.SetActive(false);
-            heater.Steam=Particles("WaterVapor",station.transform,new Vector3(.5f,1.92f,.1f),false);
+            Button3D("Heater",station,new Vector3(0,1.1f,.06f),"Click: nhiệt bật/tắt",heater.Toggle,HeaterModel,"Đèn cồn bật/tắt");
+            DropZone zone=Zone("heating",station,station.transform,new Vector3(0,1.455f,.06f),new[]{ToolKind.CopperSample});
+            zone.SnapPoint.localPosition=Vector3.zero; zone.SnapPoint.localRotation=Quaternion.Euler(0,0,-22f);
+            Factory.Shape("ClampSupport",station.transform,new Vector3(.32f,1.50f,.14f),new Vector3(.025f,.8f,.025f),new Color(.5f,.65f,.7f));
+            Factory.Shape("Clamp",station.transform,new Vector3(.21f,1.72f,.06f),new Vector3(.28f,.03f,.045f),new Color(.5f,.65f,.7f));
+            heater.HeatVisual=Factory.Shape("HeatZone",station.transform,new Vector3(0,1.425f,.06f),new Vector3(.065f,.07f,.065f),new Color(1f,.35f,.1f),PrimitiveType.Sphere); heater.HeatVisual.SetActive(false);
+            Vector3 tubeMouth=zone.SnapPoint.localPosition+zone.SnapPoint.localRotation*(Vector3.up*.4f);
+            heater.Steam=Particles("WaterVapor",zone.transform,tubeMouth,false);
         }
         void OnDestroy() { Factory?.Dispose(); Factory=null; }
     }

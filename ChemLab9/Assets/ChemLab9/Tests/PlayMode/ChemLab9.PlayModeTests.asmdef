@@ -1,5 +1,5 @@
 {
   "name": "ChemLab9.PlayModeTests",
-  "references": ["ChemLab9.Runtime"],
+  "references": ["ChemLab9.Runtime", "Unity.TextMeshPro"],
   "optionalUnityReferences": ["TestAssemblies"]
 }

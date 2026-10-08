@@ -13,6 +13,10 @@ namespace ChemLab9.UI
         RectTransform canvas;
         GameObject stationPanel, pausePanel, resultPanel, optionsPanel, lessonPanel, crosshair;
         TMP_Text hud, prompt, stationTitle, instructions, status, feedback, resultText;
+        TMP_Text elementTitle, elementDetails;
+        GameObject elementInfoPanel;
+        RectTransform taskScroll;
+        ScrollRect taskScrollView;
         Button startButton, quizButton;
         GameObject modeButtons;
         StationController station;
@@ -38,7 +42,7 @@ namespace ChemLab9.UI
         TMP_Text Text(string name, Transform parent, string value, Vector2 size, Vector2 position, int fontSize = 18, Vector2? anchor = null)
         {
             var r = Rect(name,parent,size,position,anchor); var t = r.gameObject.AddComponent<TextMeshProUGUI>();
-            t.font = font; t.text = value; t.fontSize = fontSize; t.color = new Color(.88f,.94f,1f); t.raycastTarget = false;
+            t.font = font; t.text = LabFactory.ReadableText(value); t.fontSize = fontSize; t.color = new Color(.88f,.94f,1f); t.raycastTarget = false;
             t.alignment = TextAlignmentOptions.TopLeft; t.textWrappingMode = TextWrappingModes.Normal; return t;
         }
         GameObject Panel(string name, Vector2 size, Vector2 position, Vector2? anchor = null)
@@ -91,6 +95,15 @@ namespace ChemLab9.UI
             status = Text("Status",content,"",new Vector2(300,0),Vector2.zero,17);
             feedback = Text("Feedback",content,"",new Vector2(300,0),Vector2.zero,17); feedback.color = new Color(.45f,1f,.75f);
             sr.content = content; sr.viewport = scroll;
+            taskScroll = scroll; taskScrollView = sr;
+            RectTransform elementCard = Rect("ElementInfoPanel",stationPanel.transform,new Vector2(314,230),new Vector2(14,-78),new Vector2(0,1));
+            elementInfoPanel = elementCard.gameObject;
+            elementCard.gameObject.AddComponent<Image>().color = new Color(.08f,.19f,.26f);
+            elementTitle = Text("ElementTitle",elementCard,"Thông tin nguyên tố",new Vector2(292,30),new Vector2(10,-10),20,new Vector2(0,1));
+            elementDetails = Text("ElementDetails",elementCard,"",new Vector2(292,181),new Vector2(10,-46),16,new Vector2(0,1));
+            elementDetails.enableAutoSizing = true; elementDetails.fontSizeMin = 14; elementDetails.fontSizeMax = 16;
+            elementDetails.overflowMode = TextOverflowModes.Ellipsis;
+            elementInfoPanel.SetActive(false);
             modeButtons = Rect("Modes",stationPanel.transform,new Vector2(310,35),new Vector2(0,-154)).gameObject;
             Button("RadiusMode",modeButtons.transform,"A: Bán kính",new Vector2(148,35),new Vector2(-80,0),() => ((Lesson31Manager)station.Lesson).SetMode(0));
             Button("MetalMode",modeButtons.transform,"B: Tính chất",new Vector2(148,35),new Vector2(80,0),() => ((Lesson31Manager)station.Lesson).SetMode(1));
@@ -129,10 +142,10 @@ namespace ChemLab9.UI
             if (lesson is Lesson01Manager acid) text += Chemistry.ReactionSystem.Describe(game.Database, acid.Water.State) + "\n" + Chemistry.ReactionSystem.Describe(game.Database, acid.Limewater.State) + "\n\n";
             else if (lesson is Lesson02Manager basic) text += Chemistry.ReactionSystem.Describe(game.Database, basic.Beaker.State) + "\n\n";
             else if (lesson is Lesson08Manager heat) text += Chemistry.ReactionSystem.Describe(game.Database, heat.Sample.State) + "\n\n";
-            if (lesson.QuizFinished) resultText.text = text + "Bạn đã hoàn thành tất cả câu hỏi của bàn. Có thể thử lại hoặc khám phá bàn khác.";
+            if (lesson.QuizFinished) resultText.text = LabFactory.ReadableText(text + "Bạn đã hoàn thành tất cả câu hỏi của bàn. Có thể thử lại hoặc khám phá bàn khác.");
             else
             {
-                Data.QuizQuestion q = lesson.Data.questions[lesson.QuestionIndex]; resultText.text = text + "Câu " + (lesson.QuestionIndex+1) + "/" + lesson.Data.questions.Length + ": " + q.prompt;
+                Data.QuizQuestion q = lesson.Data.questions[lesson.QuestionIndex]; resultText.text = LabFactory.ReadableText(text + "Câu " + (lesson.QuestionIndex+1) + "/" + lesson.Data.questions.Length + ": " + q.prompt);
                 for (int i=0;i<q.answers.Length;i++) { int index = i; Button("Answer_"+i,answerRoot,q.answers[i],new Vector2(715,54),new Vector2(0,62-i*59),() => { lesson.Answer(index); RenderResult(); }); }
             }
         }
@@ -154,12 +167,30 @@ namespace ChemLab9.UI
             var handle = Rect("Handle",r,new Vector2(25,35),Vector2.zero); var image = handle.gameObject.AddComponent<Image>(); image.color = new Color(.4f,1f,.8f);
             s.handleRect = handle; s.targetGraphic = image; s.value = value; s.onValueChanged.AddListener(v => changed(v));
         }
-        public void SetPrompt(string text) { if (prompt != null) prompt.text = text; }
+        public void SetPrompt(string text) { if (prompt != null) prompt.text = LabFactory.ReadableText(text); }
         public void OpenStation(StationController selected)
         {
             station = selected; stationPanel.SetActive(true); crosshair.SetActive(false);
             modeButtons.SetActive(selected.Lesson is Lesson31Manager);
+            bool periodicTable = selected.Lesson is Lesson30Manager;
+            elementInfoPanel.SetActive(periodicTable);
+            taskScroll.anchoredPosition = new Vector2(14,periodicTable ? -320 : -78);
+            taskScroll.sizeDelta = new Vector2(314,periodicTable ? 138 : 380);
+            taskScrollView.verticalNormalizedPosition = 1;
+            RefreshElementInfo();
             game.Interactor.View.rect = new Rect(0,0,.72f,1);
+        }
+        void RefreshElementInfo()
+        {
+            if (station == null || !(station.Lesson is Lesson30Manager lesson)) return;
+            if (lesson.Selected == null)
+            {
+                elementTitle.text = "Thông tin nguyên tố";
+                elementDetails.text = "Nhấn Bắt đầu rồi click ô nguyên tố trên bảng 3D.\n\nZ, proton, electron và các lớp electron sẽ hiện tại đây, không cần cuộn.";
+                return;
+            }
+            elementTitle.text = lesson.Selected.name + " (" + lesson.Selected.symbol + ")";
+            elementDetails.text = LabFactory.ReadableText(Lesson30Manager.CompactElementInfo(lesson.Selected));
         }
         public void CloseStation()
         {
@@ -177,9 +208,10 @@ namespace ChemLab9.UI
         {
             if (hud != null) hud.text = "ChemLab9 • Hoàn thành " + game.Progress.Count + "/5 • Điểm " + game.Progress.Score;
             if (station == null) return;
-            var lesson = station.Lesson; stationTitle.text = lesson.Data.title + (game.Progress.Contains(lesson.Data.lessonId) ? " ✓" : "");
-            instructions.text = lesson.Data.objective + "\n\n" + lesson.Data.instructions;
-            status.text = lesson.Status; feedback.text = lesson.Feedback;
+            var lesson = station.Lesson; stationTitle.text = lesson.Data.title + (game.Progress.Contains(lesson.Data.lessonId) ? " [X]" : "");
+            instructions.text = LabFactory.ReadableText(lesson.Data.objective + "\n\n" + lesson.Data.instructions);
+            status.text = LabFactory.ReadableText(lesson.Status); feedback.text = LabFactory.ReadableText(lesson.Feedback);
+            RefreshElementInfo();
             startButton.interactable = !lesson.Started; quizButton.interactable = lesson.Started && lesson.Ready;
         }
     }

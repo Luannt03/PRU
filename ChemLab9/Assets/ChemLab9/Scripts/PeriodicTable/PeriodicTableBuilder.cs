@@ -32,8 +32,8 @@ namespace ChemLab9.PeriodicTable
                 // Text parent is the station, so its size is independent of the scaled tile mesh.
                 f.Label("Label_" + element.symbol, transform, p + Vector3.back * .04f, element.atomicNumber + " " + element.symbol + "\n" + element.name, .065f).rectTransform.sizeDelta = new Vector2(.165f,.20f);
             }
-            f.Label("Scope", transform, new Vector3(0,1.7f,.44f), "20 nguyên tố đầu • Các vị trí còn lại chưa triển khai", .07f);
-            f.Label("Legend", transform, new Vector3(0,1.53f,.44f), "Cam: kim loại kiềm • Vàng: kiềm thổ • Xanh lam: kim loại\nLục: á kim • Xanh ngọc: phi kim • Tím: halogen • Xám: khí hiếm", .055f);
+            f.PanelLabel("Scope", transform, new Vector3(0,1.45f,.44f), "20 nguyên tố đầu • Các vị trí còn lại chưa triển khai", new Vector2(3.4f,.16f), .07f, new Color(.06f,.12f,.18f));
+            f.PanelLabel("Legend", transform, new Vector3(0,1.24f,.44f), "Cam: kim loại kiềm • Vàng: kiềm thổ • Xanh lam: kim loại\nLục: á kim • Xanh ngọc: phi kim • Tím: halogen • Xám: khí hiếm", new Vector2(3.4f,.23f), .055f, new Color(.06f,.12f,.18f));
         }
     }
 }
