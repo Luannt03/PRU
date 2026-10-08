@@ -1,0 +1,6 @@
+{
+  "name": "ChemLab9.Tests",
+  "references": ["ChemLab9.Runtime"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

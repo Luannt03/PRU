@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5866868ac80557dc9ec37479acff90fa, type: 3}
+  m_Name: "Hydration"
+  m_EditorClassIdentifier: 
+  kind: 3
+  reactants:
+  - 3
+  - 1
+  products:
+  - 4
+  reactantCoefficients: 0100000001000000
+  productCoefficients: 01000000
+  equation: "CaO + H2O → Ca(OH)2"
+  condition: "Có nước và mẫu CaO"
+  explanation: "Phản ứng tỏa nhiệt. Ca(OH)2 ít tan; nhiệt độ là giá trị mô phỏng."

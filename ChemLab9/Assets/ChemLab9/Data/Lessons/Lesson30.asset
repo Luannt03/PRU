@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f69f5162d85b978854293ac3315c4b, type: 3}
+  m_Name: "Lesson30"
+  m_EditorClassIdentifier: 
+  lessonId: 30
+  title: "Bài 30: Bảng tuần hoàn"
+  objective: "Khám phá 20 nguyên tố đầu và mô hình lớp electron."
+  instructions: "1. Nhấn Bắt đầu.\n2. Click Na.\n3. Click nguyên tố có Z = 17.\n4. Click Ca và quan sát mô hình.\n5. Mở câu hỏi.\nVị trí ô theo nhóm IUPAC và chu kỳ; tên/màu phân loại có chú giải."
+  questions:
+  - prompt: "Nguyên tử Na trung hòa có bao nhiêu proton và electron?"
+    answers:
+    - "11 proton, 10 electron."
+    - "11 proton, 11 electron."
+    - "12 proton, 11 electron."
+    correctIndex: 1
+    explanation: "Na có Z = 11, điện tích hạt nhân +11e; p = e = 11, electron theo lớp 2, 8, 1."
+  - prompt: "Ca có bao nhiêu lớp electron?"
+    answers:
+    - "2 lớp: 2, 18."
+    - "3 lớp: 2, 8, 10."
+    - "4 lớp: 2, 8, 8, 2."
+    correctIndex: 2
+    explanation: "Ca có Z = 20, thuộc chu kỳ 4, nhóm 2 / IIA. Mô hình lớp electron là minh họa học tập."
+  - prompt: "Na và Cl cùng chu kỳ 3 có điểm chung nào?"
+    answers:
+    - "Có 3 lớp electron; electron ngoài cùng lần lượt 1 và 7."
+    - "Cùng số proton."
+    - "Cùng nhóm IUPAC 1."
+    correctIndex: 0
+    explanation: "Na: 2,8,1; Cl: 2,8,7. Không suy ra neutron từ nguyên tử khối trung bình; cần đồng vị và số khối A."

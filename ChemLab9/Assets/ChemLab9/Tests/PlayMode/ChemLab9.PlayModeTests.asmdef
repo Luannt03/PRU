@@ -1,0 +1,5 @@
+{
+  "name": "ChemLab9.PlayModeTests",
+  "references": ["ChemLab9.Runtime"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

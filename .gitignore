@@ -1,0 +1,25 @@
+# Unity / generated IDE files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Bb]uild/
+[Bb]uilds/
+UserSettings/
+.vs/
+.idea/
+*.csproj
+*.sln
+*.slnx
+*.user
+*.pidb
+*.pdb
+*.mdb
+.DS_Store
+
+# Standalone regression runner is source, not a generated IDE project
+!tools/LogicChecks/LogicChecks.csproj
+bin/
+
+__pycache__/
+*.pyc
