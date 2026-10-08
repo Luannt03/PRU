@@ -35,7 +35,7 @@ namespace ChemLab9.Core
             TextMeshPro label = go.AddComponent<TextMeshPro>(); label.font = Font; label.text = text;
             label.fontSize = size * 10f; label.color = color ?? Color.white;
             label.alignment = TextAlignmentOptions.Center; label.rectTransform.sizeDelta = new Vector2(4f, 1.4f);
-            label.enableWordWrapping = true; return label;
+            label.textWrappingMode = TextWrappingModes.Normal; return label;
         }
         public GameObject Model(string name, GameObject prefab, Transform parent, Vector3 position, Vector3 size, bool glass = false)
         {

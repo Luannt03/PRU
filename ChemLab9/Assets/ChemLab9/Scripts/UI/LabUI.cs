@@ -39,7 +39,7 @@ namespace ChemLab9.UI
         {
             var r = Rect(name,parent,size,position,anchor); var t = r.gameObject.AddComponent<TextMeshProUGUI>();
             t.font = font; t.text = value; t.fontSize = fontSize; t.color = new Color(.88f,.94f,1f); t.raycastTarget = false;
-            t.alignment = TextAlignmentOptions.TopLeft; t.enableWordWrapping = true; return t;
+            t.alignment = TextAlignmentOptions.TopLeft; t.textWrappingMode = TextWrappingModes.Normal; return t;
         }
         GameObject Panel(string name, Vector2 size, Vector2 position, Vector2? anchor = null)
         {
