@@ -1,0 +1,7 @@
+{
+  "name": "SwimDemo.Editor",
+  "rootNamespace": "SwimDemo.Editor",
+  "references": ["SwimDemo.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

@@ -1,0 +1,6 @@
+{
+  "name": "SwimDemo.Tests.Editor",
+  "references": ["SwimDemo.Runtime", "SwimDemo.Editor"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

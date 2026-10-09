@@ -1,0 +1,6 @@
+{
+  "name": "SwimDemo.Runtime",
+  "rootNamespace": "SwimDemo",
+  "references": [],
+  "autoReferenced": true
+}

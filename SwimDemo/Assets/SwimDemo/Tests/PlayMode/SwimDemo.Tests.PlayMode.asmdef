@@ -1,0 +1,5 @@
+{
+  "name": "SwimDemo.Tests.PlayMode",
+  "references": ["SwimDemo.Runtime"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

@@ -1,5 +1,7 @@
 # ChemLab9 — Hóa học lớp 9 trong một phòng lab 3D
 
+**Demo Y Bot bơi mới:** mở project riêng tại [SwimDemo/README.md](SwimDemo/README.md). Project này dùng file `YBot_Swim.fbx` đã cung cấp, có điều khiển tiến/lùi, quay, lặn và bơi lên trên Unity `6000.6.0f1`. Bản source ZIP riêng nằm trong `downloads/SwimDemo_Unity6000.6.zip`.
+
 Project Unity đã được bổ sung từ bản ZIP đang làm dở: một phòng, năm bàn độc lập, thao tác 3D và câu hỏi tiếng Việt. Toàn bộ mã nguồn nằm trong `ChemLab9/`; bản upload gốc vẫn được giữ ở các scene/thư mục ban đầu để đối chiếu.
 
 ## Mở và chạy
