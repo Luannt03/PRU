@@ -1,5 +1,7 @@
 # ChemLab9 — Hóa học lớp 9 trong một phòng lab 3D
 
+**Bản mới giữ năm bài và sửa Bài 1/2:** [ChemLab9Amounts/README.md](ChemLab9Amounts/README.md). Bài 1 có kết quả kết tủa sau 10 giây; Bài 2 có chọn khối lượng CaO, hoạt ảnh đổ căn miệng cốc và bảng kết quả. ZIP riêng: `downloads/ChemLab9Amounts_Unity6000.6.zip`.
+
 **Demo Y Bot bơi mới:** mở project riêng tại [SwimDemo/README.md](SwimDemo/README.md). Project này dùng file `YBot_Swim.fbx` đã cung cấp, có điều khiển tiến/lùi, quay, lặn và bơi lên trên Unity `6000.6.0f1`. Bản source ZIP riêng nằm trong `downloads/SwimDemo_Unity6000.6.zip`.
 
 Project Unity đã được bổ sung từ bản ZIP đang làm dở: một phòng, năm bàn độc lập, thao tác 3D và câu hỏi tiếng Việt. Toàn bộ mã nguồn nằm trong `ChemLab9/`; bản upload gốc vẫn được giữ ở các scene/thư mục ban đầu để đối chiếu.

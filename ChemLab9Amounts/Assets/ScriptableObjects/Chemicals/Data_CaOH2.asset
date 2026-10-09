@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8f900acb0fbb5458c7b5e71d72bfcf, type: 3}
+  m_Name: Data_CaOH2
+  m_EditorClassIdentifier: Assembly-CSharp::ChemLab.Data.ChemicalData
+  chemicalId: CaOH2
+  formula: "Ca(OH)\u2082"
+  chemicalName: "Dung d\u1ECBch N\u01B0\u1EDBc v\xF4i trong"
+  state: 1
+  liquidColor: {r: 1, g: 1, b: 1, a: 0.2}
+  indicatorColor: {r: 0, g: 0, b: 0, a: 0}
+  isCloudy: 0
+  phValue: 12.5
+  vfxPrefab: {fileID: 0}

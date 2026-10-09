@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f69f5162d85b978854293ac3315c4b, type: 3}
+  m_Name: "Lesson02"
+  m_EditorClassIdentifier: 
+  lessonId: 2
+  title: "Bài 2: Oxit bazơ"
+  objective: "Cho CaO tác dụng với nước và kiểm tra môi trường bazơ."
+  instructions: "1. Nhập khối lượng CaO (0,10-5,00 g) hoặc kéo slider, rồi kéo thìa vào cốc nước.\n2. Đợi phản ứng hoàn tất; xem bảng khối lượng và slider kết quả.\n3. Kéo lọ phenolphthalein vào cốc: lọ mở nắp, nghiêng đúng miệng cốc rồi trở về.\n4. Quan sát màu hồng và trả lời câu hỏi.\nCó thể thử chỉ thị với nước trước để kiểm tra trường hợp không hồng."
+  questions:
+  - prompt: "CaO + nước tạo chất gì và có hiện tượng nào?"
+    answers:
+    - "CaCO3 và khí CO2."
+    - "CuO màu đen."
+    - "Ca(OH)2 và tỏa nhiệt."
+    correctIndex: 2
+    explanation: "CaO + H2O → Ca(OH)2, tỏa nhiệt. Ca(OH)2 ít tan, hỗn hợp có thể hơi đục; không phải mọi oxit bazơ đều phản ứng với nước."
+  - prompt: "Phenolphthalein hồng vì sao? Hơi minh họa là gì?"
+    answers:
+    - "Môi trường bazơ; hơi nước minh họa, không phải khí sản phẩm."
+    - "Nước luôn làm chỉ thị hồng; tạo O2."
+    - "CaO có màu hồng; tạo CO2."
+    correctIndex: 0
+    explanation: "Chỉ thị nhận biết môi trường bazơ. Nhiệt độ là tham số mô phỏng gameplay, không phải phép tính thực nghiệm."

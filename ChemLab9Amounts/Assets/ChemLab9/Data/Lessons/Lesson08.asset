@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f69f5162d85b978854293ac3315c4b, type: 3}
+  m_Name: "Lesson08"
+  m_EditorClassIdentifier: 
+  lessonId: 8
+  title: "Bài 8: Bazơ không tan"
+  objective: "Nung Cu(OH)2 màu xanh để thu CuO màu đen."
+  instructions: "1. Kéo ống nghiệm xanh vào kẹp phía trên thiết bị.\n2. Click thiết bị để bật nhiệt.\n3. Đợi đủ thời gian; chất rắn chuyển đen.\n4. Click thiết bị để tắt.\n5. Mở câu hỏi. Tắt sớm sẽ tạm dừng thời gian tích lũy."
+  questions:
+  - prompt: "Sau khi nung Cu(OH)2, chất rắn đen là gì?"
+    answers:
+    - "CuO."
+    - "CO2."
+    - "CaCO3."
+    correctIndex: 0
+    explanation: "Cu(OH)2 —nhiệt→ CuO + H2O. Chỉ phần chất rắn đổi màu; thủy tinh không đổi đen."
+  - prompt: "Điều gì xảy ra khi tắt nhiệt sau phản ứng?"
+    answers:
+    - "CuO tự chuyển lại Cu(OH)2."
+    - "CuO vẫn tồn tại; Thử lại tạo mẫu mới."
+    - "Tạo khí O2."
+    correctIndex: 1
+    explanation: "Đây là ví dụ nhiệt phân Cu(OH)2. Không suy rộng mọi bazơ đều nhiệt phân như nhau; thời gian nung là tham số gameplay."

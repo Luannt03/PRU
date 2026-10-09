@@ -1,0 +1,257 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca1bc6e64eb5fa5998fe8290a17ad32, type: 3}
+  m_Name: "ChemicalDatabase"
+  m_EditorClassIdentifier: 
+  elements:
+  - symbol: "H"
+    name: "Hiđro"
+    oldGroup: IA
+    atomicNumber: 1
+    group: 1
+    period: 1
+    atomicMass: 1.008
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 01000000
+    category: 4
+  - symbol: "He"
+    name: "Heli"
+    oldGroup: VIIIA
+    atomicNumber: 2
+    group: 18
+    period: 1
+    atomicMass: 4.0026
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 02000000
+    category: 6
+  - symbol: "Li"
+    name: "Liti"
+    oldGroup: IA
+    atomicNumber: 3
+    group: 1
+    period: 2
+    atomicMass: 6.94
+    relativeRadius: 0.7
+    radiusNote: "Mô hình minh họa, không theo tỉ lệ thực; không có đơn vị pm."
+    shells: 0200000001000000
+    category: 0
+  - symbol: "Be"
+    name: "Beri"
+    oldGroup: IIA
+    atomicNumber: 4
+    group: 2
+    period: 2
+    atomicMass: 9.0122
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000002000000
+    category: 1
+  - symbol: "B"
+    name: "Bo"
+    oldGroup: IIIA
+    atomicNumber: 5
+    group: 13
+    period: 2
+    atomicMass: 10.81
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000003000000
+    category: 3
+  - symbol: "C"
+    name: "Cacbon"
+    oldGroup: IVA
+    atomicNumber: 6
+    group: 14
+    period: 2
+    atomicMass: 12.011
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000004000000
+    category: 4
+  - symbol: "N"
+    name: "Nitơ"
+    oldGroup: VA
+    atomicNumber: 7
+    group: 15
+    period: 2
+    atomicMass: 14.007
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000005000000
+    category: 4
+  - symbol: "O"
+    name: "Oxi"
+    oldGroup: VIA
+    atomicNumber: 8
+    group: 16
+    period: 2
+    atomicMass: 15.999
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000006000000
+    category: 4
+  - symbol: "F"
+    name: "Flo"
+    oldGroup: VIIA
+    atomicNumber: 9
+    group: 17
+    period: 2
+    atomicMass: 18.9984
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000007000000
+    category: 5
+  - symbol: "Ne"
+    name: "Neon"
+    oldGroup: VIIIA
+    atomicNumber: 10
+    group: 18
+    period: 2
+    atomicMass: 20.1797
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 0200000008000000
+    category: 6
+  - symbol: "Na"
+    name: "Natri"
+    oldGroup: IA
+    atomicNumber: 11
+    group: 1
+    period: 3
+    atomicMass: 22.9898
+    relativeRadius: 1
+    radiusNote: "Mô hình minh họa, không theo tỉ lệ thực; không có đơn vị pm."
+    shells: 020000000800000001000000
+    category: 0
+  - symbol: "Mg"
+    name: "Magie"
+    oldGroup: IIA
+    atomicNumber: 12
+    group: 2
+    period: 3
+    atomicMass: 24.305
+    relativeRadius: 0.82
+    radiusNote: "Mô hình minh họa, không theo tỉ lệ thực; không có đơn vị pm."
+    shells: 020000000800000002000000
+    category: 1
+  - symbol: "Al"
+    name: "Nhôm"
+    oldGroup: IIIA
+    atomicNumber: 13
+    group: 13
+    period: 3
+    atomicMass: 26.9815
+    relativeRadius: 0.68
+    radiusNote: "Mô hình minh họa, không theo tỉ lệ thực; không có đơn vị pm."
+    shells: 020000000800000003000000
+    category: 2
+  - symbol: "Si"
+    name: "Silic"
+    oldGroup: IVA
+    atomicNumber: 14
+    group: 14
+    period: 3
+    atomicMass: 28.085
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 020000000800000004000000
+    category: 3
+  - symbol: "P"
+    name: "Photpho"
+    oldGroup: VA
+    atomicNumber: 15
+    group: 15
+    period: 3
+    atomicMass: 30.9738
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 020000000800000005000000
+    category: 4
+  - symbol: "S"
+    name: "Lưu huỳnh"
+    oldGroup: VIA
+    atomicNumber: 16
+    group: 16
+    period: 3
+    atomicMass: 32.06
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 020000000800000006000000
+    category: 4
+  - symbol: "Cl"
+    name: "Clo"
+    oldGroup: VIIA
+    atomicNumber: 17
+    group: 17
+    period: 3
+    atomicMass: 35.45
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 020000000800000007000000
+    category: 5
+  - symbol: "Ar"
+    name: "Argon"
+    oldGroup: VIIIA
+    atomicNumber: 18
+    group: 18
+    period: 3
+    atomicMass: 39.95
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 020000000800000008000000
+    category: 6
+  - symbol: "K"
+    name: "Kali"
+    oldGroup: IA
+    atomicNumber: 19
+    group: 1
+    period: 4
+    atomicMass: 39.0983
+    relativeRadius: 1.3
+    radiusNote: "Mô hình minh họa, không theo tỉ lệ thực; không có đơn vị pm."
+    shells: 02000000080000000800000001000000
+    category: 0
+  - symbol: "Ca"
+    name: "Canxi"
+    oldGroup: IIA
+    atomicNumber: 20
+    group: 2
+    period: 4
+    atomicMass: 40.078
+    relativeRadius: 0
+    radiusNote: "Chưa triển khai bán kính."
+    shells: 02000000080000000800000002000000
+    category: 1
+  reactions:
+  - {fileID: 11400000, guid: 3a5919b28da854c4a5a33396287fed8e, type: 2}
+  - {fileID: 11400000, guid: 6dccf1b6e280561cb3a52e95da797071, type: 2}
+  - {fileID: 11400000, guid: a71a1ded8bf75243abf1d951f2f949a8, type: 2}
+  - {fileID: 11400000, guid: ae3c7ac5c18d520bb372a6965bd29077, type: 2}
+  substances:
+  - {fileID: 11400000, guid: 8da816b6cee05ddaaf77a00ddf155e6f, type: 2}
+  - {fileID: 11400000, guid: eef034a6de2f5b049884c725d9b90d06, type: 2}
+  - {fileID: 11400000, guid: b2f17281b05c5269b67ee1305c0c64c6, type: 2}
+  - {fileID: 11400000, guid: 7bee7621761e560985711c6f2bb14d45, type: 2}
+  - {fileID: 11400000, guid: 6f69643bb7655afdbc733569cd9f74e0, type: 2}
+  - {fileID: 11400000, guid: d0238ae2b53351aea4945cb71d838e00, type: 2}
+  - {fileID: 11400000, guid: 86e5985fb01a53c6bba05114c476c2f6, type: 2}
+  - {fileID: 11400000, guid: d86bbebddf70503ca8161beab27f21fb, type: 2}
+  - {fileID: 11400000, guid: 1fce90034ac55a1fba166d319f5d2cbe, type: 2}
+  - {fileID: 11400000, guid: d41ab69f83c854a991661e5c1296145b, type: 2}
+  lessons:
+  - {fileID: 11400000, guid: 393e8a8384b0526bb3f8572919c3b9ef, type: 2}
+  - {fileID: 11400000, guid: 7390d8acbbd65ba0bfacc3a57653f02f, type: 2}
+  - {fileID: 11400000, guid: 0f417d8509555df38bf11c8d84f2b8cf, type: 2}
+  - {fileID: 11400000, guid: 830e748b55c25ec795208b723ffd463b, type: 2}
+  - {fileID: 11400000, guid: faf2be87649e5c28aa1c8b669b37e0a6, type: 2}

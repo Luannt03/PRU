@@ -20,6 +20,7 @@ UserSettings/
 # Standalone regression runner is source, not a generated IDE project
 !tools/LogicChecks/LogicChecks.csproj
 !tools/SwimChecks/SwimChecks.csproj
+!tools/QuantityChecks/QuantityChecks.csproj
 bin/
 
 __pycache__/

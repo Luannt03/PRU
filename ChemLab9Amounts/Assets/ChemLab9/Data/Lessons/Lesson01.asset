@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f69f5162d85b978854293ac3315c4b, type: 3}
+  m_Name: "Lesson01"
+  m_EditorClassIdentifier: 
+  lessonId: 1
+  title: "Bài 1: Oxit axit"
+  objective: "Nhận biết CO2 là oxit axit qua quỳ tím và nước vôi trong."
+  instructions: "1. Kéo đầu ống vào cốc nước.\n2. Click nguồn CO2, đợi đủ liều và nguồn dừng.\n3. Kéo quỳ vào nước: quỳ hóa đỏ.\n4. Kéo đầu ống vào nước vôi trong, bật khí: kết tủa trắng tăng dần trong 10 giây.\n5. Xem bảng kết quả và khối lượng CaCO3, rồi mở câu hỏi. Thả sai trả dụng cụ về vị trí cũ."
+  questions:
+  - prompt: "Vì sao quỳ tím hóa đỏ sau khi dẫn CO2 vào nước?"
+    answers:
+    - "CO2 hòa tan tạo môi trường axit yếu."
+    - "CO2 có màu đỏ."
+    - "Nước ban đầu là bazơ."
+    correctIndex: 0
+    explanation: "CO2 + H2O ⇌ H2CO3. Axit cacbonic yếu làm quỳ hóa đỏ; nước vẫn không màu."
+  - prompt: "Vì sao nước vôi trong vẩn đục?"
+    answers:
+    - "CO2 có màu trắng."
+    - "Tạo kết tủa CaCO3 trắng."
+    - "Tạo khí O2."
+    correctIndex: 1
+    explanation: "CO2 + Ca(OH)2 → CaCO3↓ + H2O. MVP giới hạn một liều CO2, không dẫn dư."

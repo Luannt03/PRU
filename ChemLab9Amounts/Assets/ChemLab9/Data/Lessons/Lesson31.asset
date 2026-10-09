@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f69f5162d85b978854293ac3315c4b, type: 3}
+  m_Name: "Lesson31"
+  m_EditorClassIdentifier: 
+  lessonId: 31
+  title: "Bài 31: Xu hướng tuần hoàn"
+  objective: "So sánh bán kính và xu hướng tính kim loại/phi kim."
+  instructions: "1. Nhấn Bắt đầu.\n2. Ở chế độ A, click Li, Na, K theo bán kính tăng.\n3. Quan sát Na–Mg–Al trong chu kỳ 3.\n4. Chọn B: Tính chất để xem mũi tên và thanh minh họa.\n5. Trả lời câu hỏi. Không dùng chỉ số hoạt động hóa học chung."
+  questions:
+  - prompt: "Trong ví dụ Na–Mg–Al, bán kính giảm theo chiều nào?"
+    answers:
+    - "Al → Mg → Na."
+    - "Na → Mg → Al."
+    - "Không có xu hướng."
+    correctIndex: 1
+    explanation: "Trong một chu kỳ, bán kính nhìn chung giảm từ trái sang phải. Kích thước ở đây là minh họa, không có đơn vị pm."
+  - prompt: "Trong một nhóm chính, tính kim loại nhìn chung tăng theo chiều nào?"
+    answers:
+    - "Từ dưới lên trên."
+    - "Không đổi."
+    - "Từ trên xuống dưới."
+    correctIndex: 2
+    explanation: "Tính kim loại nhìn chung tăng xuống nhóm chính, tính phi kim giảm. Khí hiếm được giải thích riêng; không đồng nhất xu hướng này với hoạt động hóa học."

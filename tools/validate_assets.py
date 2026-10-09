@@ -1,7 +1,7 @@
 """Static Unity YAML/reference checks. Requires PyYAML; this does not run Unity import."""
 from pathlib import Path
 import re,struct,json,yaml,sys
-root=Path(__file__).resolve().parents[1]/'ChemLab9'
+root=Path(sys.argv[1]).resolve() if len(sys.argv)>1 else Path(__file__).resolve().parents[1]/'ChemLab9'
 assets=root/'Assets'
 def docs(path):
  s=path.read_text();s=re.sub(r'^%.*\n','',s,flags=re.M);s=re.sub(r'^--- !u!(\d+) &(-?\d+).*$',r'---\n__class__: \1\n__id__: \2',s,flags=re.M)
